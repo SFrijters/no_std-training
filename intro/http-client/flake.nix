@@ -50,6 +50,13 @@
         };
 
         devShells.${system}.default = pkgs.mkShell {
+          name = "${name}-dev";
+          shellHook = ''
+            export CARGO_HOME="''${XDG_CACHE_HOME}/cargo";
+            export CARGO_TARGET_DIR="''${XDG_CACHE_HOME}/cargo-build-nix/${name}"
+          '';
+          SSID="foo";
+          PASSWORD="bar";
           buildInputs = [
             pkgs.cargo-espflash
             toolchain
